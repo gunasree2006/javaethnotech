@@ -1,0 +1,91 @@
+package datastructures;
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        next=null;
+    }
+}
+class llmethods{
+    Node head;
+    void insert(int data){
+        Node newnode=new Node(data);
+        if(head==null){
+            head=newnode;
+        }else{
+            Node temp=head;
+            while(temp.next!=null){//uesd to check the last node
+                temp=temp.next;
+            }
+            temp.next=newnode;
+        }
+    }
+    void insertatpos(int pos,int data){ // time complexity=O(n)
+        if(pos==1){
+            insertAtBegin(data);
+            return;
+        }
+        Node newnode=new Node(data);
+        Node temp=head;
+        for(int i=1;i<pos-1;i++){
+            temp=temp.next;
+        }
+        if(temp==null){
+            System.out.println("invalid position");
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+    }
+    void insertAtBegin(int data) //O(1)
+    {
+        Node newnode = new Node(data);
+        newnode.next=head;
+        head=newnode; // new node points to current head head = newnode; // head now becomes the new node }
+    }
+    void deletelast(){ //O(n)
+        Node temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        temp.next=null;
+    }
+    void deletebegin(){ //O(1)
+        Node temp=head;
+        head=temp.next;
+        temp.next=null;
+    }
+    void deleteatmid(int pos){ //O(n)
+        Node temp=head;
+        for(int i=1;i<pos-1&&temp!=null;i++){
+            temp=temp.next;
+
+        }
+        temp.next=temp.next.next;
+    }
+    void display(){ //O(n)
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" -> ");
+            temp=temp.next;
+        }
+        System.out.print("null");
+    }
+
+}
+public class linkedlist{
+    public static void main(String args[]){
+        llmethods obj=new llmethods();
+        obj.insert(10);
+        obj.insert(20);
+        obj.insert(30);
+        obj.insert(40);
+        obj.insertAtBegin(4);
+        obj.insertatpos(1,12);
+        obj.deletelast();
+        obj.deletebegin();
+        obj.deleteatmid(2);
+        obj.display();
+    }
+}
