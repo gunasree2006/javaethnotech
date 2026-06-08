@@ -1,0 +1,16 @@
+package arrays;
+import java.util.*;
+public class arr_ele_del {
+    public static void main(String args[]){
+        int arr[]={1,3,4,5,6,7,9,10};
+        int target=5;//index to delete
+
+        for(int i=target+1;i<arr.length;i++) {
+                arr[i - 1] = arr[i];
+
+
+            }
+
+            System.out.print(Arrays.toString(arr));
+        }
+}
